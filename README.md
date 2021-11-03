@@ -76,7 +76,7 @@ Note: You **CANNOT** have a duplicate name for the same game.
 If you would like to update or delete characters you will need to input their id number in the url endpoint. For example:
 **127.0.0.1:8000/api/players/1**
 
-![Players database](bowlingscore/documentation/snap_2.JPG "Updating or Deleting a Player")
+![Players database](bowlingscore/documentation/snap_3.JPG "Updating or Deleting a Player")
 
 
 ## Testing
