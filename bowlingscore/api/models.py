@@ -29,7 +29,7 @@ class BowlingScore(models.Model):
     class Meta:
         unique_together = ["frame_num", "player"]
     
-
+    
     @property
     def strike_spare(self):
         # If the first roll knocks out 10 its a strike
@@ -42,11 +42,13 @@ class BowlingScore(models.Model):
             return 'neither'
     @property
     def pins(self):
-        if self.first_roll + self.second_roll < 10:
+        if self.first_roll + self.second_roll <= 10:
             return self.first_roll + self.second_roll
         else:
             # Don't allow user input to be greater than 10
+            q1 = BowlingScore.objects.filter(pk=self.id).update(second_roll=10 - self.first_roll)
             return 10
+            
         
     @property
     def frame_score(self):
@@ -69,10 +71,13 @@ class BowlingScore(models.Model):
                     return q1.pins + q2.pins
                 except BowlingScore.DoesNotExist:
                     pass
-            if self.frame_num <10:
+            if self.frame_num < 10:
                 return self.pins
             # if the tenth frame results in a strike or spare, the player may add the bonus pins field to there score in the end
             if self.frame_num == 10 and self.strike_spare in ['strike', 'spare']:
+                if self.strike_spare == 'spare' and self.tenth_frame_bonus_pins > 10:
+                    q1 = BowlingScore.objects.filter(pk=self.id).update(tenth_frame_bonus_pins=10)
+                    return min(10, self.pins + self.tenth_frame_bonus_pins)
                 return self.pins + self.tenth_frame_bonus_pins
 
     @property
