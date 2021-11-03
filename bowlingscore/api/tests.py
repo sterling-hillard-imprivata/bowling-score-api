@@ -155,8 +155,8 @@ class CreateNewScoreTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 # PUT Test
-class UpdateSinglePuppyTest(TestCase):
-    """ Test module for updating an existing puppy record """
+class UpdateSingleScoreTest(TestCase):
+    """ Test module for updating an existing score record """
     client = Client()
     def setUp(self):
         self.score_1 = BowlingScore.objects.create(
@@ -195,7 +195,7 @@ class UpdateSinglePuppyTest(TestCase):
 
 # DELETE Test
 class DeleteSingleScoreTest(TestCase):
-    """ Test module for deleting an existing puppy record """
+    """ Test module for deleting an existing score record """
     
 
     def setUp(self):

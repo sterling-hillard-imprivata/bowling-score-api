@@ -9,9 +9,9 @@ class PlayerSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'game']
 
 class ScoreSerializer(serializers.ModelSerializer):
-    name = serializers.SlugRelatedField(read_only=True, slug_field = 'name')
+    
     class Meta:
         model = BowlingScore
-        fields = ['id', 'frame_num', 'first_roll', 'second_roll','player','name', 'strike_spare', 'tenth_frame_bonus_pins', 'frame_score', 'total_score']
+        fields = ['id', 'frame_num', 'first_roll', 'second_roll','player', 'strike_spare', 'tenth_frame_bonus_pins', 'frame_score', 'total_score']
         
 
