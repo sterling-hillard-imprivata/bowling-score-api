@@ -62,7 +62,7 @@ python manage.py runserver
 - From here we are given the server location: 127.0.0.1:8000/. We want to go straight to the api serializer so input **127.0.0.1/8000/api** into the browser.
 
 image
-![Bowling Score API directory](/documentation/snap_1.jpg "Directory")
+![Bowling Score API directory](bowlingscore/documentation/snap_1.JPG "Directory")
 
 
 ## Testing
