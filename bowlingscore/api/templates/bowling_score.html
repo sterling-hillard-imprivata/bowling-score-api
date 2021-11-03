@@ -1,0 +1,12 @@
+{% load rest_framework %}
+
+<html><body>    
+<h1>New Person</h1>
+
+<form action="{% url 'score:bowl-create' %}" method="POST">
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Save">
+</form>
+
+</body></html>
