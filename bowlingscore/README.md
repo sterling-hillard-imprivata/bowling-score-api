@@ -27,8 +27,42 @@ http://bowling.about.com/od/rulesofthegame/a/bowlingscoring.htm
 - The solution should score as the game progresses rather than just at the end.
 
 ## Set up
+This project requires prior installations of both Python and Django. 
+
+- If you do not have either, you may follow the links below:
+Python 3x: https://www.python.org/downloads/
+Django:https://docs.djangoproject.com/en/3.2/topics/install/
+
+
+- Clone the repository to your desired directory folder and enter the repo
 ```bash
-git clone 
+
+mkdir <folder-name>
+cd <folder-name>
+
+git clone git@github.com:sterlingdhill/bowling-score-api.git
+
+cd bowling-score-api/bowlingscore
+
 ```
-## Running the API
+
+### Wiping your data and starting fresh
+There are some records in the API already within the sqlite file. If you would like to start fresh, simply type in the 
+command python manage.py flush. You will be prompted if you would like to erase the dataset, input Yes
+
+## Running the AP
+Enter the project 'bowlingscore' and run the command > python manage.py runserver
+
+```bash
+cd bowlingscore
+
+python manage.py runserver
+```
+
+- From here we are given the server location: 127.0.0.1:8000/. We want to go straight to the api serializer so input **127.0.0.1/8000/api** into the browser.
+
+image
+![Bowling Score API directory](/documentation/snap_1.jpg "Directory")
+
+
 ## Testing
