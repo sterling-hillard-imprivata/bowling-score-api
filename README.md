@@ -59,10 +59,24 @@ cd bowlingscore
 python manage.py runserver
 ```
 
-- From here we are given the server location: 127.0.0.1:8000/. We want to go straight to the api serializer so input **127.0.0.1/8000/api** into the browser.
+- From here we are given the server location: 127.0.0.1:8000/. We want to go straight to the api serializer so input **127.0.0.1:8000/api** into the browser.
 
-image
 ![Bowling Score API directory](bowlingscore/documentation/snap_1.JPG "Directory")
+
+From here we will choose the 'players' endpoint so click that link to begin creating a player.
+
+### Creating, Retrieving, Updating and Deleting Players
+
+![Players database](bowlingscore/documentation/snap_2.JPG "Create a Player")
+
+You can enter the players name and which game number they are to be apart of, both of these fields are required so the database and API can identify which players go with which game. 
+
+Note: You **CANNOT** have a duplicate name for the same game. 
+
+If you would like to update or delete characters you will need to input their id number in the url endpoint. For example:
+**127.0.0.1:8000/api/players/1**
+
+![Players database](bowlingscore/documentation/snap_2.JPG "Updating or Deleting a Player")
 
 
 ## Testing
