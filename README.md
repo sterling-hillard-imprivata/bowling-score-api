@@ -29,9 +29,9 @@ http://bowling.about.com/od/rulesofthegame/a/bowlingscoring.htm
 ## Set up
 This project requires prior installations of both Python and Django. 
 
-- If you do not have either, you may follow the links below:
-Python 3x: https://www.python.org/downloads/
-Django:https://docs.djangoproject.com/en/3.2/topics/install/
+If you do not have either, you may follow the links below:
+- Python 3x: https://www.python.org/downloads/
+- Django:https://docs.djangoproject.com/en/3.2/topics/install/
 
 In your command-line:
 - Clone the repository to your desired directory folder and enter the repo
