@@ -79,6 +79,7 @@ class BowlingScore(models.Model):
                     q1 = BowlingScore.objects.filter(pk=self.id).update(tenth_frame_bonus_pins=10)
                     return min(10, self.pins + self.tenth_frame_bonus_pins)
                 return self.pins + self.tenth_frame_bonus_pins
+        
 
     @property
     def total_score(self):
@@ -86,14 +87,18 @@ class BowlingScore(models.Model):
         if self.frame_num > 1:
             previous_frame = self.frame_num - 1
             # Looks at the perceding frame's total score and adds the that score to the current frame score. If a frame was skipped,
-            # the total score will be calculated from any of the previous scores of that game.
+            # the total score will be calculated from any of the previous scores of that game. And the program will adjust frame back
             while self.previous_total == 0 and previous_frame >= 1:
                 try:
                     query = BowlingScore.objects.get(frame_num = previous_frame, player = self.player)
                     self.previous_total = query.total_score
                     return self.frame_score + self.previous_total
-                
+        
                 except BowlingScore.DoesNotExist:
+                    try:
+                        q1 = BowlingScore.objects.filter(pk=self.id).update(frame_num=previous_frame)
+                    except BowlingScore.IntegrityError:
+                        pass
                     previous_frame -= 1
             # If for any reason there is no record of a previous frame, the current frame score is returned
             return self.frame_score
