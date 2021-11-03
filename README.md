@@ -89,10 +89,10 @@ We can now start simulating scores on this screen. Make sure to fill these field
 - second roll:pins knocked down in the second roll
 - tenth frame bonus pins*optional field*: total pins knocked down after the tenth frame. Note: This field is only used if the player gets a strike or spare in their last/tenth frame.
 
-![Score interface](bowlingscore/documentation/snap_4.jpg "Inputing Score parameters")
+![Score interface](bowlingscore/documentation/snap_4.JPG "Inputing Score parameters")
 
 This is the output after POSTing
-![Score interface](bowlingscore/documentation/snap_5.jpg "Inputing Score parameters")
+![Score interface](bowlingscore/documentation/snap_5.JPG "Inputing Score parameters")
 
 The previous variables entered in json format with a few new variables:
 - strike_spare: calculates if the resulting frame was a strike, spare, or neither of the above. Note: if the first roll is a 10 its automatically a strike, if not and both the rolls result in 10 or higher its a spare.
@@ -100,7 +100,7 @@ The previous variables entered in json format with a few new variables:
 - total_score: This is the total score tallied thus far. This value will also change as a result of later frames scores if those frames are strikes and spares. *Note: It is possible to skip frames, so the total score will use the most previous total score, if no previous score then it will return the frame score of that frame*
 
 
-![Updating Scores](bowlingscore/documentation/snap_6.jpg "Updating and Deleting Scores")
+![Updating Scores](bowlingscore/documentation/snap_6.JPG "Updating and Deleting Scores")
 A few notes:
 
 1. Because the API is dynamically calculating changes, any deletion and update of prior frames will affect the total scoring of the frames before them. It won't break the API, but the score will be lower than anticipated.
