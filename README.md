@@ -5,7 +5,7 @@
 ## Table of Contents
 - Overview
 - Set up
-- Running the Api
+- Running the API
 - Testing
 
 ---
@@ -50,7 +50,7 @@ cd bowling-score-api/bowlingscore
 There are some records in the API already within the sqlite file. If you would like to start fresh, simply type in the 
 command-line python manage.py flush. You will be prompted if you would like to erase the dataset, input Yes
 
-## Running the AP
+## Running the API
 Enter the project 'bowlingscore' and run the command > python manage.py runserver
 
 ```bash
