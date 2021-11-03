@@ -77,15 +77,20 @@ class BowlingScore(models.Model):
 
     @property
     def total_score(self):
+        self.previous_total = 0
         if self.frame_num > 1:
             previous_frame = self.frame_num - 1
-            # Looks at the perceding frame's total score and adds the that score to the current frame score.
-            try:
-                query = BowlingScore.objects.get(frame_num = previous_frame, player = self.player)
-                self.previous_total = query.total_score
-                return self.frame_score + self.previous_total
-            # If for any reason there is no record of the previous frame, the current frame score is returned
-            except BowlingScore.DoesNotExist:
-                return self.frame_score
+            # Looks at the perceding frame's total score and adds the that score to the current frame score. If a frame was skipped,
+            # the total score will be calculated from any of the previous scores of that game.
+            while self.previous_total == 0 and previous_frame >= 1:
+                try:
+                    query = BowlingScore.objects.get(frame_num = previous_frame, player = self.player)
+                    self.previous_total = query.total_score
+                    return self.frame_score + self.previous_total
+                
+                except BowlingScore.DoesNotExist:
+                    previous_frame -= 1
+            # If for any reason there is no record of a previous frame, the current frame score is returned
+            return self.frame_score
         else: 
             return self.frame_score
