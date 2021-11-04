@@ -93,13 +93,12 @@ class BowlingScore(models.Model):
                     query = BowlingScore.objects.get(frame_num = previous_frame, player = self.player)
                     self.previous_total = query.total_score
                     return self.frame_score + self.previous_total
-        
                 except BowlingScore.DoesNotExist:
                     try:
                         q1 = BowlingScore.objects.filter(pk=self.id).update(frame_num=previous_frame)
                     except BowlingScore.IntegrityError:
-                        return q1.total_score + self.frame_score
-                    previous_frame -= 1
+                        pass
+                    previous_frame -= 1  
             # If for any reason there is no record of a previous frame, the current frame score is returned
             return self.frame_score
         else: 
