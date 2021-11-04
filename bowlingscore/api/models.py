@@ -98,7 +98,7 @@ class BowlingScore(models.Model):
                     try:
                         q1 = BowlingScore.objects.filter(pk=self.id).update(frame_num=previous_frame)
                     except BowlingScore.IntegrityError:
-                        pass
+                        return q1.total_score + self.frame_score
                     previous_frame -= 1
             # If for any reason there is no record of a previous frame, the current frame score is returned
             return self.frame_score

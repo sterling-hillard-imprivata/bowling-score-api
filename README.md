@@ -92,7 +92,7 @@ We can now start simulating scores on this screen. Make sure to fill these field
 - player: The players will appear as objects with their respective id number, select the player
 - first roll: pins knocked down in the first roll
 - second roll:pins knocked down in the second roll
-- tenth frame bonus pins*optional field*: total pins knocked down after the tenth frame. Note: This field is only used if the player gets a strike or spare in their last/tenth frame.
+- tenth frame bonus pins: *optional* total pins knocked down after the tenth frame. Note: This field is only used if the player gets a strike or spare in their last/tenth frame.
 
 ![Score interface](bowlingscore/documentation/snap_4.JPG "Inputing Score parameters")
 
@@ -102,7 +102,7 @@ This is the output after POSTing
 The previous variables entered in json format with a few new variables:
 - strike_spare: calculates if the resulting frame was a strike, spare, or neither of the above. Note: if the first roll is a 10 its automatically a strike, if not and both the rolls result in 10 or higher its a spare.
 - frame_score: This is the score of the frame. If the frame is a strike or spare, this value can change as a result of later frames.
-- total_score: This is the total score tallied thus far. This value will also change as a result of later frames scores if those frames are strikes and spares. *Note: It is possible to skip frames, so the total score will use the most previous total score, if no previous score then it will return the frame score of that frame*
+- total_score: This is the total score tallied thus far. This value will also change as a result of later frames scores if those frames are strikes and spares. *Note: It is possible to skip frames, but the api will recalculate the total score and shift the frame back to the correct value on the next request*
 
 
 ![Updating Scores](bowlingscore/documentation/snap_6.JPG "Updating and Deleting Scores")
@@ -128,7 +128,9 @@ I manually tested (testing checklist):
     - If strike or spare, then the frame will be updated to add the succeeding frame pins
     - If strike, the nthe frame will be updated to add the pins of succeeding frame and the frame after that. 
 - Total score is continuously being updated the more frames completed and frame scores calculated.
-- Frames are skippable, and the total score will be calculated from the frames that have been 
+- If a frame is skipped,the total score and frame will be recalculated and adjusted on the next request.
+- If a player is deleted, all of its score instances are also deleted.
+- If a score frame is deleted, all of the frames and total scores after it will be recalculated on the next request.
 
 If you want to view any of the drafted unit tests they can be found in **bowlingscore/bowlingscore/test/test.py**
 
